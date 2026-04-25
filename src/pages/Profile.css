@@ -1,0 +1,60 @@
+.profile-page { max-width: 1100px; margin: 0 auto; padding: 88px 28px 60px; }
+.profile-inner { display: flex; flex-direction: column; gap: 22px; }
+
+.profile-card { padding: 28px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--cyan)); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; color: var(--text-inv); flex-shrink: 0; }
+.profile-main { flex: 1; min-width: 200px; }
+.profile-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.profile-name { font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -.5px; }
+.profile-edit-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.profile-email  { font-size: 14px; color: var(--text-2); }
+.profile-joined { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+.save-badge { padding: 3px 10px; background: var(--teal-dim); border: 1px solid var(--teal-glow); color: var(--teal); border-radius: 100px; font-size: 12px; font-weight: 700; }
+.profile-rank { text-align: right; }
+.rank-badge { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+.rank-sub { font-size: 13px; color: var(--text-2); }
+
+/* STATS */
+.profile-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+@media (max-width: 900px) { .profile-stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 500px) { .profile-stats { grid-template-columns: repeat(2, 1fr); } }
+.ps-card { padding: 18px 14px; text-align: center; }
+.ps-icon  { font-size: 20px; margin-bottom: 8px; }
+.ps-val   { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--teal); margin-bottom: 3px; }
+.ps-label { font-size: 11px; color: var(--text-2); text-transform: uppercase; letter-spacing: .4px; font-weight: 500; }
+
+/* GRID */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 800px) { .profile-grid { grid-template-columns: 1fr; } }
+.section-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+.ach-count { font-size: 14px; color: var(--text-2); font-weight: 500; font-family: var(--font-body); }
+
+/* PROGRESS */
+.prog-breakdown { padding: 24px; }
+.prog-items { display: flex; flex-direction: column; gap: 18px; }
+.prog-item {}
+.pi-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pi-label { font-weight: 600; font-size: 14px; flex: 1; }
+.pi-frac { font-size: 12px; color: var(--text-2); font-family: var(--font-mono); }
+.pi-pct  { font-weight: 700; font-size: 14px; font-family: var(--font-display); }
+
+/* ACHIEVEMENTS */
+.achievements-section { padding: 24px; }
+.ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 600px) { .ach-grid { grid-template-columns: repeat(2, 1fr); } }
+.ach-item { padding: 14px 12px; background: var(--bg-card2); border-radius: 12px; text-align: center; transition: all .22s var(--ease); border: 1px solid transparent; }
+.ach-item.earned { border-color: rgba(0,230,180,.2); }
+.ach-item.earned:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+.ach-item.locked { opacity: .4; }
+.ach-icon { font-size: 26px; margin-bottom: 6px; }
+.ach-name { font-weight: 700; font-size: 12px; margin-bottom: 3px; }
+.ach-desc { font-size: 11px; color: var(--text-2); line-height: 1.4; }
+
+/* COMPLETED */
+.comp-list { padding: 24px; }
+.comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+@media (max-width: 640px) { .comp-grid { grid-template-columns: 1fr; } }
+.comp-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--bg-card2); border-radius: 9px; }
+.comp-num   { color: var(--text-3); font-size: 12px; width: 28px; flex-shrink: 0; }
+.comp-title { flex: 1; font-size: 13px; font-weight: 500; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.comp-pts   { font-size: 12px; font-weight: 700; flex-shrink: 0; }

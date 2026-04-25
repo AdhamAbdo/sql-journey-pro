@@ -1,0 +1,17 @@
+.sql-editor-wrap {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .22s var(--ease), box-shadow .22s var(--ease);
+  background: #0d1117;
+}
+.sql-editor-wrap:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-dim);
+}
+.cm-container {
+  min-height: 220px;
+}
+.cm-container .cm-editor {
+  background: #0d1117 !important;
+}

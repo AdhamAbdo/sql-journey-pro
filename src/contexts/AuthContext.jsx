@@ -129,11 +129,15 @@ export function AuthProvider({ children }) {
       const { data, error } = await supabase.auth.signUp({ email, password });
       if (error) throw new Error(error.message);
       if (data?.user) {
-        await supabase.from('profiles').insert({
+        const { error: profileError } = await supabase.from('profiles').insert({
           id: data.user.id, name, email,
           pts: 0, coins: 30, streak: 0,
           joined: new Date().toISOString().split('T')[0],
         });
+        if (profileError) {
+          console.error('[v0] Failed to create profile in Supabase:', profileError);
+          throw new Error(`Profile creation failed: ${profileError.message}`);
+        }
         const u = await sbGetFullUser(data.user);
         setUser(u); return u;
       }

@@ -1,39 +1,46 @@
 import { createClient } from '@supabase/supabase-js';
 
+// ─────────────────────────────────────────────
+// ENV VARIABLES
+// ─────────────────────────────────────────────
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // ─────────────────────────────────────────────
-// STRICT CHECK (better debugging)
+// DEBUG (DEV ONLY)
+// ─────────────────────────────────────────────
+if (import.meta.env.DEV) {
+  console.log('[Supabase URL]', SUPABASE_URL);
+  console.log('[Supabase KEY exists]', !!SUPABASE_ANON_KEY);
+}
+
+// ─────────────────────────────────────────────
+// VALIDATION
 // ─────────────────────────────────────────────
 export const SUPABASE_CONFIGURED =
   typeof SUPABASE_URL === 'string' &&
-  typeof SUPABASE_KEY === 'string' &&
   SUPABASE_URL.length > 0 &&
-  SUPABASE_KEY.length > 0;
+  typeof SUPABASE_ANON_KEY === 'string' &&
+  SUPABASE_ANON_KEY.length > 0;
 
 // ─────────────────────────────────────────────
-// SAFE CLIENT (NEVER NULL WITHOUT WARNING)
+// SAFE CLIENT (NEVER THROW CRASH)
 // ─────────────────────────────────────────────
 export const supabase = SUPABASE_CONFIGURED
-  ? createClient(SUPABASE_URL, SUPABASE_KEY, {
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
       },
     })
-  : undefined;
+  : null;
 
 // ─────────────────────────────────────────────
-// HARD DEBUG (IMPORTANT)
+// WARNING (CLEAR ERROR IN CONSOLE)
 // ─────────────────────────────────────────────
-if (import.meta.env.DEV) {
-  console.log('SUPABASE_URL:', SUPABASE_URL);
-  console.log('SUPABASE_KEY exists:', !!SUPABASE_KEY);
-  console.log(
-    `[SQL Journey Pro] Mode: ${
-      SUPABASE_CONFIGURED ? '☁️ Supabase' : '⚠️ MISSING ENV (WILL BREAK AUTH)'
-    }`
+if (!SUPABASE_CONFIGURED && import.meta.env.DEV) {
+  console.warn(
+    '⚠️ Supabase is NOT configured. App will use fallback mode (localStorage).'
   );
 }
